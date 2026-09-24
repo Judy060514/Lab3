@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 4 - Number Guessing Game</title>
+    <script src="randominteger.js"></script>
+</head>
+<body>
+    <h1>Number Guessing Game</h1>
+    <p>I am thinking of a number between 1 and 100. You have 10 turns to guess it.</p>
+    <p>Open the browser console (F12) to see the game messages, or press the button below to start.</p>
+
+    <button onclick="startGame()">Start Game</button>
+
+    <script>
+        // ===== 游戏主逻辑 =====
+        function startGame() {
+            var target = randomInt();     // 用 Exercise 3 的函数生成 1~100
+            var guessed = [];             // 记录玩家猜过的数字
+            var maxTurns = 10;
+            var turn = 0;
+            var correct = false;
+
+            // 最多 10 次
+            while (turn < maxTurns && !correct) {
+                turn++;
+                var input = prompt("Turn " + turn + " of " + maxTurns +
+                                   "\nGuess a number between 1 and 100:");
+
+                // 如果玩家点取消，直接结束
+                if (input === null) {
+                    alert("Game cancelled. The number was " + target + ".");
+                    return;
+                }
+
+                var guess = parseInt(input, 10);
+
+                // 检查是否为有效数字
+                if (isNaN(guess)) {
+                    alert("Not a valid number: " + input);
+                    turn--;               // 无效输入不算一次机会
+                    continue;
+                }
+
+                guessed.push(guess);      // 记录这次猜测
+
+                // 判断结果
+                if (guess === target) {
+                    correct = true;
+                    alert("Correct! You guessed the number " + target +
+                          " in " + turn + " turn(s).\n" +
+                          "Previous guesses: " + guessed.join(", "));
+                } else if (guess < target) {
+                    alert("Too low!\n" +
+                          "Previous guesses: " + guessed.join(", "));
+                } else {
+                    alert("Too high!\n" +
+                          "Previous guesses: " + guessed.join(", "));
+                }
+            }
+
+            // 用完 10 次还没猜对
+            if (!correct) {
+                alert("Sorry, you ran out of turns.\n" +
+                      "The number was " + target + ".\n" +
+                      "Your guesses: " + guessed.join(", "));
+            }
+
+            // 问玩家是否再玩一次
+            if (confirm("Do you want to play again?")) {
+                startGame();              // 递归调用，重新开始
+            } else {
+                alert("Thanks for playing!");
+            }
+        }
+    </script>
+</body>
+</html>

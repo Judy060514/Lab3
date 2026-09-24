@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 2 - navigator Object</title>
+</head>
+<body>
+    <h1>Exercise 2 - Navigator Object Demo</h1>
+    <p>The <code>navigator</code> object contains information about the browser.</p>
+
+    <script>
+        // 属性 1：navigator.userAgent —— 浏览器身份信息
+        document.write("<h2>Property: navigator.userAgent</h2>");
+        document.write("<p>" + navigator.userAgent + "</p>");
+
+        // 属性 2：navigator.language —— 浏览器语言
+        document.write("<h2>Property: navigator.language</h2>");
+        document.write("<p>" + navigator.language + "</p>");
+
+        // 属性 3：navigator.platform —— 操作系统平台
+        document.write("<h2>Property: navigator.platform</h2>");
+        document.write("<p>" + navigator.platform + "</p>");
+
+        // 方法：navigator.javaEnabled() —— 检测 Java 是否启用
+        document.write("<h2>Method: navigator.javaEnabled()</h2>");
+        document.write("<p>Java enabled: " + navigator.javaEnabled() + "</p>");
+    </script>
+</body>
+</html>
